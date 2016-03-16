@@ -31,6 +31,7 @@ See `attributes/default.rb` for default values.
 - `node['resolver']['search']` - Search list for host-name lookup.
 - `node['resolver']['nameservers']` - Required, an array of nameserver IP address strings; the default is an empty array, and the default recipe will not change resolv.conf if this is not set. See __Usage__.
 - `node['resolver']['options']` - a hash of resolv.conf options. See __Usage__ for examples.
+- `node['resolver']['sortlist']` - Sortlist specified by IP-address-netmask pairs, separated by slashes. See __Usage__ for examples.
 - `node['resolver']['domain']` - Local domain name. if `nil`, the domain is determined from the local hostname returned by `gethostname(2)`.
 - `node['resolver']['chef_search']` - the search query used for finding nameservers in the from_server_role recipe. The default value is in the recipe.
 
@@ -55,7 +56,8 @@ Using the default recipe, set the resolver attributes in a role, for example fro
   "search" => "int.example.org",
   "options" => {
     "timeout" => 2, "rotate" => nil
-  }
+  },
+  "sortlist" => "10.13.37.0/255.255.192.0 10.13.0.0/255.255.255.0"
 }
 ```
 
@@ -66,6 +68,7 @@ search int.example.org
 nameserver 10.13.37.120
 nameserver 10.13.37.40
 options timeout:2 rotate
+sortlist 10.13.37.0/255.255.192.0 10.13.0.0/255.255.255.0
 ```
 
 Using the `from_server_role` recipe, assign the `node['resolver']['server_role']` attribute's role to a system that is the DNS resolver in the same Chef environment.
