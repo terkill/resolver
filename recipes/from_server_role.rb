@@ -38,6 +38,7 @@ template '/etc/resolv.conf' do
   variables(
     'search' => node['resolver']['search'],
     'nameservers' => nameservers.sort,
-    'options' => node['resolver']['options']
+    'options' => node['resolver']['options'],
+    'sortlist' => node['resolver']['sortlist']
   )
 end

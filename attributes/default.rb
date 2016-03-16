@@ -21,3 +21,4 @@ default['resolver']['domain'] = nil
 default['resolver']['nameservers'] = []
 default['resolver']['options'] = {}
 default['resolver']['server_role'] = 'nameserver'
+default['resolver']['sortlist'] = nil
